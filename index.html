@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Financial Chat Assistant</title>
+    <title>AI TEMA</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
 
         :root {
             --primary-bg: #0f0f23;
@@ -123,6 +124,10 @@
             position: relative;
             backdrop-filter: blur(10px);
             border: 1px solid var(--border);
+        }
+
+        .message-content img {
+            width: 100%;
         }
 
         .message.user .message-content {
@@ -623,29 +628,12 @@
 <body>
     <div class="container">
         <header class="header">
-            <h1>💰 Financial Assistant</h1>
-            <p>Your intelligent companion for investment and financial guidance</p>
+            <h1>TEMI Assistant</h1>
+            <p>Your intelligent companion for TEMA Application</p>
         </header>
 
         <div class="chat-container" id="chatContainer">
             <div class="welcome-message" id="welcomeMessage">
-                <h2>👋 Welcome to Financial Chat</h2>
-                <p>I'm here to help you with investment advice, financial data, and market insights. Ask me anything!</p>
-                
-                <div class="example-questions">
-                    <div class="example-question" onclick="sendExampleQuestion('Bagaimana cara memulai investasi untuk pemula?')">
-                        🚀 Bagaimana cara memulai investasi untuk pemula?
-                    </div>
-                    <div class="example-question" onclick="sendExampleQuestion('Apa saja jenis investasi yang cocok untuk jangka panjang?')">
-                        📈 Apa saja jenis investasi yang cocok untuk jangka panjang?
-                    </div>
-                    <div class="example-question" onclick="sendExampleQuestion('Bagaimana cara diversifikasi portfolio yang baik?')">
-                        🎯 Bagaimana cara diversifikasi portfolio yang baik?
-                    </div>
-                    <div class="example-question" onclick="sendExampleQuestion('Kapan waktu yang tepat untuk membeli saham?')">
-                        ⏰ Kapan waktu yang tepat untuk membeli saham?
-                    </div>
-                </div>
             </div>
 
             <div class="typing-indicator" id="typingIndicator">
@@ -688,7 +676,7 @@
                 <textarea 
                     class="message-input" 
                     id="messageInput" 
-                    placeholder="Ask about investments, financial planning, market trends..."
+                    placeholder="Ask about report in TEMA data..."
                     rows="1"
                 ></textarea>
                 <button class="send-button" id="sendButton" onclick="sendMessage()">
@@ -700,7 +688,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/4.3.0/marked.min.js"></script>
     <script>
-        const API_URL = 'https://oman-dev.app.n8n.cloud/webhook/n8n_chat_agent';
+        const API_URL = 'https://oman-dev.app.n8n.cloud/webhook/4c572449-1b90-442b-8120-22298962883a/chat';
         let isWaiting = false;
         let sessionId = null;
         let selectedFile = null;
@@ -849,7 +837,7 @@
                 // Prepare request body
                 const requestBody = {
                     chatInput: message,
-                    session_id: sessionId
+                    sessionId: sessionId
                 };
 
                 // Add file data if present
@@ -882,8 +870,8 @@
                 
                 hideTypingIndicator();
                 
-                if (data.AIResponse) {
-                    addMessage(data.AIResponse, 'bot');
+                if (data.output) {
+                    addMessage(data.output, 'bot');
                 } else {
                     throw new Error('No response received from the server');
                 }
