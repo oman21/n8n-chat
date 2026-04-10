@@ -41,6 +41,10 @@
       overflow: hidden;
     }
 
+    .text-primary {
+      color: #12b7ad !important;
+    }
+
     .app {
       display: grid;
       grid-template-columns: 280px 1fr;
@@ -294,10 +298,47 @@
       gap: 20px;
     }
 
+    .welcome {
+      padding: 6px 0 18px;
+    }
+
+    .welcome-hero {
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      gap: 18px;
+    }
+
+    .welcome-copy {
+      flex: 0 1 auto;
+      min-width: 0;
+      max-width: min(100%, 680px);
+    }
+
+    .welcome-bubble {
+      position: relative;
+      display: inline-flex;
+      width: fit-content;
+      max-width: 100%;
+      padding: 18px 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: #ffffff;
+      box-shadow: var(--shadow);
+    }
+
     .welcome h3 {
-      margin: 0 0 10px;
-      font-size: 28px;
+      margin: 0;
+      font-size: 25px;
       line-height: 1.1;
+      white-space: normal;
+    }
+
+    .welcome-gif {
+      width: clamp(50px, 8vw, 80px);
+      height: auto;
+      flex-shrink: 0;
+      object-fit: contain;
     }
 
     .welcome p {
@@ -729,8 +770,20 @@
         padding-right: 14px;
       }
 
+      .welcome-hero {
+        gap: 14px;
+      }
+
       .welcome h3 {
-        font-size: 28px;
+        font-size: 24px;
+      }
+
+      .welcome-bubble {
+        padding: 16px 18px;
+      }
+
+      .welcome-gif {
+        width: clamp(82px, 24vw, 118px);
       }
 
       .status-pill {
@@ -791,7 +844,14 @@
       <section class="chat-scroll" id="chatScroll">
         <div class="chat-wrap" id="chatWrap">
           <div class="welcome">
-            <h3>Halo, ada yang bisa TEMI bantu?</h3>
+            <div class="welcome-hero">
+              <img class="welcome-gif" src="./temi.gif" alt="TEMI menyapa" />
+              <div class="welcome-copy">
+                <div class="welcome-bubble">
+                  <h3>Halo, ada yang bisa <span class="text-primary">TEMI</span> bantu?</h3>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -1363,7 +1423,14 @@
         if (!existingWelcome) {
           chatWrap.innerHTML = `
             <div class="welcome">
-              <h3>Halo, ada yang bisa TEMI bantu?</h3>
+              <div class="welcome-hero">
+                <img class="welcome-gif" src="./temi.gif" alt="TEMI menyapa" />
+                <div class="welcome-copy">
+                  <div class="welcome-bubble">
+                    <h3>Halo, ada yang bisa <span class="text-primary">TEMI</span> bantu?</h3>
+                  </div>
+                </div>
+              </div>
             </div>
           `;
         }
